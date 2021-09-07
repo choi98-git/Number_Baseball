@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/baseball_field"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/Text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:alpha="0.7"
+        android:background="@drawable/textview_background"
+        android:gravity="center"
+        android:text="Number BaseBall"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/levelText"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:background="@drawable/textview_background"
+        android:gravity="center"
+        android:text="난이도 선택"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <LinearLayout
+        android:id="@+id/levelLinear"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/levelText"
+        android:layout_marginTop="50dp"
+        android:background="@color/white"
+        android:alpha="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/check3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/levelThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="3 자리수"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/check4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/levelFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 자리수"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/check5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:buttonTint="@color/black"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/levelFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 자리수"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startGame"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:background="@drawable/button_background"
+        android:text="게임 시작"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/levelLinear"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/explain"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:alpha="0.7"
+        android:background="@drawable/button_background"
+        android:text="게임 설명"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/startGame"
+        app:layout_constraintVertical_bias="0.1" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
