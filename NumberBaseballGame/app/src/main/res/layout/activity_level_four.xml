@@ -65,8 +65,8 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/thirdAnswer"
+        app:layout_constraintStart_toEndOf="@id/firstAnswer"
         app:layout_constraintTop_toBottomOf="@id/answerText" />
 
     <EditText
@@ -81,8 +81,24 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fourthAnswer"
         app:layout_constraintStart_toEndOf="@id/secondAnswer"
+        app:layout_constraintTop_toBottomOf="@id/answerText" />
+
+    <EditText
+        android:id="@+id/fourthAnswer"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:alpha="0.7"
+        android:background="@drawable/answer_edittext"
+        android:gravity="center"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/thirdAnswer"
         app:layout_constraintTop_toBottomOf="@id/answerText" />
 
     <TextView

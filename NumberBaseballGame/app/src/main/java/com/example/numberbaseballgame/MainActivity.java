@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         startGame();
     }
 
+    // 중복 체크 x
     private void checkOne(){
         check3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,21 +56,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // 게임 시작
     private void startGame(){
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check3.isChecked()){
                     Intent intent = new Intent(MainActivity.this, LevelThree.class);
+                    intent.putExtra("level", 3);
                     startActivity(intent);
                 }
                 if (check4.isChecked()){
+                    Intent intent = new Intent(MainActivity.this, LevelThree.class);
+                    intent.putExtra("level", 4);
+                    startActivity(intent);
                 }
                 if (check5.isChecked()){
+                    Intent intent = new Intent(MainActivity.this, LevelThree.class);
+                    intent.putExtra("level", 5);
+                    startActivity(intent);
                 }
             }
         });
     }
-
 
 }
