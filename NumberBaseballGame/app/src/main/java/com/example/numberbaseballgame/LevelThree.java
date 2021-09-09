@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,16 +93,28 @@ public class LevelThree extends AppCompatActivity {
     private void answer(){
         answer = new int[level];
         if (level == 3) {
-            getAnswer();
+            try {
+                getAnswer();
+            }catch (Exception e){
+                Error();
+            }
         }
         if (level == 4){
-            getAnswer();
-            answer[3] = Integer.parseInt(fourthAnswer.getText().toString());
+            try {
+                getAnswer();
+                answer[3] = Integer.parseInt(fourthAnswer.getText().toString());
+            }catch (Exception e){
+                Error();
+            }
         }
         if (level == 5){
-            getAnswer();
-            answer[3] = Integer.parseInt(fourthAnswer.getText().toString());
-            answer[4] = Integer.parseInt(fifthAnswer.getText().toString());
+            try {
+                getAnswer();
+                answer[3] = Integer.parseInt(fourthAnswer.getText().toString());
+                answer[4] = Integer.parseInt(fifthAnswer.getText().toString());
+            }catch (Exception e){
+                Error();
+            }
         }
     }
 
@@ -112,6 +125,7 @@ public class LevelThree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 answer();
+
                 for(int i=0; i<level; i++){
                     for(int j=0; j<level; j++){
                         if(number[i] == answer[j]){
@@ -133,12 +147,20 @@ public class LevelThree extends AppCompatActivity {
                    dlg.setTitle("정답입니다");
                    dlg.setMessage("정답: " + correctAnswer );
                    dlg.show();
-                }else {
-                    resultText.setText(strike + "S " + ball + "B");
+                }else {// strike = 0 이고, ball = 0 이면 OUT
+                    if (strike == 0 && ball == 0){
+                        resultText.setText("OUT");
+                    }else {
+                        resultText.setText(strike + "S " + ball + "B");
+                    }
                     strike = 0;
                     ball = 0;
                 }
             }
         });
+    }
+    // 답을 입력하지 않은 경우 에러 메시지
+    private void Error() {
+        Toast.makeText(getApplicationContext(),"자리수에 맞는 값을 모두 입력해 주세요", Toast.LENGTH_SHORT).show();
     }
 }
