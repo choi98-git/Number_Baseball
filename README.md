@@ -15,6 +15,7 @@ Make number baseball game
    ![answer](https://user-images.githubusercontent.com/79885792/133887459-63390a44-f4e0-4fd9-b498-ecfed752417a.PNG)
    ### Check the answer 
    ![checkAnswer](https://user-images.githubusercontent.com/79885792/133887467-ffb3127b-e66d-4db8-97db-d3f687bb5dce.PNG)
+   ![checkAnswer2](https://user-images.githubusercontent.com/79885792/133887941-048bb05d-67cd-44eb-b666-2c952d37b00e.PNG)
    ### Answer History
    ![history](https://user-images.githubusercontent.com/79885792/133887485-e6cf0ca0-8975-46f8-8351-f4caf99a296b.PNG)
    ### Get the answer right
