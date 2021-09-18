@@ -4,6 +4,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.appcompat.app.AlertDialog;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -87,9 +89,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void gameExplanation(){
         explanationBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onClick(View v) {
                 dlg = new AlertDialog.Builder(MainActivity.this);
+                dlg.setIcon(getDrawable(R.drawable.baseball_icon));
                 dlg.setTitle("게임 설명");
                 dlg.setMessage(
                         "숫자야구란 사용자가 선택한 3~5개의 임의의 숫자가 무엇인지 맞추는 게임입니다.\n" +

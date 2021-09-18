@@ -15,7 +15,7 @@ public class LevelThree extends AppCompatActivity {
 
     EditText firstAnswer, secondAnswer, thirdAnswer, fourthAnswer, fifthAnswer;
     TextView resultText;
-    Button answerButton;
+    Button answerButton, historyButton;
     AlertDialog.Builder dlg;
     int[] number;// 실제 정답
     int[] answer;// 사용자가 입력한 정답
@@ -23,6 +23,9 @@ public class LevelThree extends AppCompatActivity {
     int ball = 0; // ball 개수
     int level = 0; // 진행할 게임의 자리수
     String correctAnswer = ""; //정답
+    String userAnswer = ""; // 유저가 입력한 답
+    String history = "";
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,31 +36,26 @@ public class LevelThree extends AppCompatActivity {
         if (level_number == 3) {
             level = 3;
             setContentView(R.layout.activity_level_three);
-            connect();
-            makeNumber();
-            answerResult();
+
         }
 
         if (level_number == 4) {
             level = 4;
             setContentView(R.layout.activity_level_four);
-            connect();
             fourthAnswer = (EditText) findViewById(R.id.fourthAnswer);
-
-            makeNumber();
-            answerResult();
         }
 
         if (level_number == 5) {
             level = 5;
             setContentView(R.layout.activity_level_five);
-            connect();
             fourthAnswer = (EditText) findViewById(R.id.fourthAnswer);
             fifthAnswer = (EditText) findViewById(R.id.fifthAnswer);
-            makeNumber();
-            answerResult();
         }
 
+        connect();
+        makeNumber();
+        answerResult();
+        history();
     }
 
     private void connect(){
@@ -65,6 +63,7 @@ public class LevelThree extends AppCompatActivity {
         secondAnswer = (EditText) findViewById(R.id.secondAnswer);
         thirdAnswer = (EditText) findViewById(R.id.thirdAnswer);
         resultText = (TextView) findViewById(R.id.resultText);
+        historyButton = (Button) findViewById(R.id.historyButton);
         answerButton = (Button) findViewById(R.id.answerButton);
     }
 
@@ -87,6 +86,7 @@ public class LevelThree extends AppCompatActivity {
         answer[0] = Integer.parseInt(firstAnswer.getText().toString());
         answer[1] = Integer.parseInt(secondAnswer.getText().toString());
         answer[2] = Integer.parseInt(thirdAnswer.getText().toString());
+
     }
 
     // 사용자가 입력한 정답을 answer 배열에 저장
@@ -120,12 +120,13 @@ public class LevelThree extends AppCompatActivity {
 
     // number[] 와 answer[] 비교후 결과
     private void answerResult(){
+
         answerButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SetTextI18n")
+            @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
             @Override
             public void onClick(View v) {
                 answer();
-
+                count ++;
                 for(int i=0; i<level; i++){
                     for(int j=0; j<level; j++){
                         if(number[i] == answer[j]){
@@ -137,27 +138,70 @@ public class LevelThree extends AppCompatActivity {
                         }
                     }
                 }
-                // 입력한 level 자리수가 모두 정답일 경우
 
-                if (strike == level){
+                userAnswer = "";
+                for(int i=0; i<level; i++) {
+                    userAnswer += answer[i];
+                }
+
+                // 입력한 level 자리수가 모두 정답일 경우
+                if (strike == level) {
                     for(int i=0; i<level; i++) {
                         correctAnswer += number[i];
                     }
-                   dlg = new AlertDialog.Builder(LevelThree.this);
-                   dlg.setTitle("정답입니다");
-                   dlg.setMessage("정답: " + correctAnswer );
-                   dlg.show();
-                }else {// strike = 0 이고, ball = 0 이면 OUT
+                    dlg = new AlertDialog.Builder(LevelThree.this);
+                    dlg.setIcon(getDrawable(R.drawable.baseball_icon));
+                    dlg.setTitle("정답입니다");
+                    dlg.setMessage("정답: " + correctAnswer + "\n" + count + "번만에 맞추셨습니다!!");
+                    dlg.show();
+                    history = "";
+                } else {// strike = 0 이고, ball = 0 이면 OUT
                     if (strike == 0 && ball == 0){
-                        resultText.setText("OUT");
+                        resultText.setText("\n" + userAnswer + " : " + "OUT");
                     }else {
-                        resultText.setText(strike + "S " + ball + "B");
+                        resultText.setText("\n" + userAnswer + " : " + strike + "S " + ball + "B");
                     }
+                    history = history + resultText.getText().toString();
                     strike = 0;
                     ball = 0;
                 }
+                levelAnswerTextClear();
             }
         });
+    }
+    private void history(){
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("UseCompatLoadingForDrawables")
+            @Override
+            public void onClick(View v) {
+                dlg = new AlertDialog.Builder(LevelThree.this);
+                dlg.setIcon(getDrawable(R.drawable.baseball_icon));
+                dlg.setTitle("기록보기");
+                dlg.setMessage(history);
+                dlg.setPositiveButton("확인",null);
+                dlg.show();
+            }
+        });
+    }
+    private void levelAnswerTextClear(){
+        if (level == 3){
+            AnswerTextClear();
+        }
+        else if (level == 4){
+            AnswerTextClear();
+            fourthAnswer.setText("");
+        }
+        else if (level == 5){
+            AnswerTextClear();
+            fourthAnswer.setText("");
+            fifthAnswer.setText("");
+        }
+    }
+
+    private void AnswerTextClear(){
+        firstAnswer.setText("");
+        secondAnswer.setText("");
+        thirdAnswer.setText("");
     }
     // 답을 입력하지 않은 경우 에러 메시지
     private void Error() {
